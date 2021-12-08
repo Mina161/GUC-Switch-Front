@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 export const Home = (props) => {
     return (
-        <div>
-            
+        <div className="main-page">
+            <h1 className="text-center">Tutorial Pairing</h1>
         </div>
     )
 }

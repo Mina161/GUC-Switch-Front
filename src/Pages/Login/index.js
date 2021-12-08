@@ -33,44 +33,52 @@ export const Login = ({ login, user }) => {
   };
 
   return (
-    <div>
-      <div className="login-form">
-        <Form
-          name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="on"
-        >
-          <Form.Item
-            label="Application Number"
-            name="appNo"
-            rules={[{ required: true, message: "Please input your id number" }]}
+    <div className="position-relative main-page">
+      <div className="col-md-6 position-absolute top-50 start-50 translate-middle">
+        <h1 className="text-center">GUCians Switching WebApp</h1>
+        <div className="p-3 login-form">
+          <Form
+            name="basic"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 16 }}
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="on"
           >
-            <Input placeholder="49-XXXXX" name="appNo" onChange={onChange} />
-          </Form.Item>
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: "Please input your password" }]}
-          >
-            <Input.Password name="password" onChange={onChange} />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Log in
-            </Button>
-          </Form.Item>
-        </Form>
+            <Form.Item
+              label="GUC ID Number"
+              name="appNo"
+              rules={[
+                { required: true, message: "Please input your id number" },
+              ]}
+            >
+              <Input placeholder="49-XXXXX" name="appNo" onChange={onChange} />
+            </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                { required: true, message: "Please input your password" },
+              ]}
+            >
+              <Input.Password name="password" onChange={onChange} />
+            </Form.Item>
+            <div className="d-flex justify-content-center">
+              <Button className="main-button mx-3" type="primary" htmlType="submit">
+                Log in
+              </Button>
+              <a href="/signup">Register user</a>
+            </div>
+          </Form>
+        </div>
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-    user: state?.auth?.user,
+  user: state?.auth?.user,
 });
 
 const mapDispatchToProps = { login };

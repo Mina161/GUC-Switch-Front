@@ -1,7 +1,32 @@
-.App {
-  text-align: center;
+:root {
+  --primaryColor: #B1E693;
+  --secColor: #6ECB63;
+  --terColor: #EC9CD3;
+  --mainWhite: #FBF4E9;
+}
+
+.App{
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--mainWhite);
+}
+
+.main-page{
+  width: 100vw;
+  height: 100vh;
 }
 
 .login-form{
-  width: 80vw;
+  background-color: var(--primaryColor);
+  border-radius: 5px;
+}
+
+.main-button{
+  background-color: darkblue;
+  border-radius: 10px;
+}
+
+.main-button:hover{
+  background-color: darkcyan;
+  border-radius: 10px;
 }
