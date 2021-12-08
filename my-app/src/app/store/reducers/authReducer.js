@@ -17,7 +17,7 @@ export default function store(state = initialState, action) {
       };
     case LOGIN_SUCCESS:
       localStorage.setItem("user", JSON.stringify(action.payload));
-
+      console.log("Payload:",payload)
       return {
         ...state,
         user: payload,

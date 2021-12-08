@@ -1,5 +1,5 @@
 import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL } from "./types";
-import { postRequest } from "../../core/network";
+import { postRequest } from "../../../core/network";
 import { auth as authEnpoint } from "../../../constants/endPoints.json";
 import { notification } from "antd";
 
@@ -7,7 +7,7 @@ export const login = (dataForLogin) => (dispatch) => {
   dispatch({ type: LOGIN });
   postRequest(dataForLogin, undefined, undefined, authEnpoint.login)
     .then((response) => {
-      const { data } = response.data;
+      const { data } = response;
       return dispatch({
         type: LOGIN_SUCCESS,
         payload: data,

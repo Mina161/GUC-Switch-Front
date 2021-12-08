@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = "localhost:8080";
+const baseURL = "https://guc-switch-back.herokuapp.com";
+// const baseURL = "localhost:8080";
 
 const postRequest = async (body, query, params, endPoint) => {
   return await axios.post(
@@ -8,7 +9,10 @@ const postRequest = async (body, query, params, endPoint) => {
     body,
     {
       params: query,
-    }
+      headers:{
+        "Accept":"json"
+      }
+    },
   );
 };
 
@@ -30,6 +34,9 @@ const putRequest = async (body, query, params, endPoint) => {
     body,
     {
       params: query,
+      headers: {
+        
+      },
     }
   );
 };
