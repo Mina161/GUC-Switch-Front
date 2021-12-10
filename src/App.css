@@ -1,8 +1,23 @@
 :root {
-  --primaryColor: #B1E693;
+  --primaryColor: #69bdd6;
   --secColor: #6ECB63;
   --terColor: #EC9CD3;
   --mainWhite: #FBF4E9;
+}
+
+.request{
+  background-color: rgba(0, 0, 139, 0.308);
+  border-radius: 5px;
+  border:1px solid darkblue;
+}
+
+.link{
+  color: white;
+}
+
+.quote{
+  font-weight: bold;
+  font-style: italic;
 }
 
 .App{
@@ -17,6 +32,11 @@
 }
 
 .login-form{
+  background-color: var(--primaryColor);
+  border-radius: 5px;
+}
+
+.info-card{
   background-color: var(--primaryColor);
   border-radius: 5px;
 }
