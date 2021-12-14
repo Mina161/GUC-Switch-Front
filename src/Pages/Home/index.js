@@ -46,7 +46,9 @@ export const Home = ({
     data.append("major", major)
     data.append("semester", semester)
     data.append("tutNo", tutNo)
-    data.append("goTo", goTo)
+    goTo.forEach((tut) => {
+      data.append("goTo", tut);
+    });
     data.append("germanLevel", germanLevel)
     data.append("englishLevel", englishLevel)
     addRequest(data)

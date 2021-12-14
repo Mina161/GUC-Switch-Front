@@ -40,7 +40,7 @@ export const SingleRequest = ({ request, deleteRequest, updateRequest }) => {
     major: request?.major,
     semester: request?.semester,
     tutNo: request?.tutNo,
-    goTo: request?.goTo.split(","),
+    goTo: request?.goTo,
     germanLevel: request?.germanLevel,
     englishLevel: request?.englishLevel,
   });
@@ -48,18 +48,21 @@ export const SingleRequest = ({ request, deleteRequest, updateRequest }) => {
   const onChange = (e) => {
     let { name, value } = e.target;
     setRequestData({ ...requestData, [name]: value });
+    console.log(value);
   };
 
   let { appNo, major, semester, tutNo, goTo, germanLevel, englishLevel } =
     requestData;
-  
+
   const editAdd = () => {
     let data = new FormData();
     data.append("appNo", appNo);
     data.append("major", major);
     data.append("semester", semester);
     data.append("tutNo", tutNo);
-    data.append("goTo", goTo);
+    goTo.forEach((tut) => {
+      data.append("goTo", tut);
+    });
     data.append("germanLevel", germanLevel);
     data.append("englishLevel", englishLevel);
     updateRequest(data);
