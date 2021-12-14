@@ -7,7 +7,7 @@ export const loadUser = () => async (dispatch, getState) => {
   dispatch({
     type: LOGIN,
   });
-  let user = localStorage.getItem("user");
+  let user = localStorage.getItem("switchingAppUser");
 
   if (user) {
     user = JSON.parse(user);

@@ -109,7 +109,8 @@ export const Signup = ({ signup, user }) => {
               label="Password"
               name="password"
               rules={[
-                { required: true, message: "Please confirm your password" }
+                { required: true, message: "Please confirm your password" },
+                { min: 8, message: "Password should be atleast 8 characters long"}
               ]}
             >
               <Input.Password name="password" onChange={onChange} />

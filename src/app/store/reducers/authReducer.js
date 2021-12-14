@@ -16,8 +16,7 @@ export default function store(state = initialState, action) {
         isLoading: true,
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem("user", JSON.stringify(action.payload));
-      console.log("Payload:",payload)
+      localStorage.setItem("switchingAppUser", JSON.stringify(action.payload));
       return {
         ...state,
         user: payload,
@@ -25,7 +24,7 @@ export default function store(state = initialState, action) {
         isError: false,
       };
     case LOGIN_FAIL:
-      localStorage.removeItem("user");
+      localStorage.removeItem("switchingAppUser");
       return {
         ...state,
         user: null,

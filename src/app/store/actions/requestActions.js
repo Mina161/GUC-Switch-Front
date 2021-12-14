@@ -48,7 +48,7 @@ export const deleteRequest = (data) => (dispatch) => {
   dispatch({ type: REQUEST_LOADING });
   delRequest(data, undefined, request)
     .then((response) => {
-      notification.success({ message: response });
+      notification.success({ message: "Request Deleted Successfully" });
       return dispatch({
         type: REQUEST_SUCCESS,
         payload: null,

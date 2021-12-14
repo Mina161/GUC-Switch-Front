@@ -1,2 +1,2 @@
-import SingleRequest from "./SingleRequest";
-export {SingleRequest};
+import { AddRequest, EditRequest } from "./Request/RequestComponents";
+export { AddRequest, EditRequest };
