@@ -1,62 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&display=swap');
 :root {
   --primaryColor: #69bdd6;
-  --secColor: #6ECB63;
-  --terColor: #EC9CD3;
-  --mainWhite: #FBF4E9;
+  --secColor: #6ecb63;
+  --terColor: #ec9cd3;
+  --mainWhite: #fbf4e9;
 }
 
-.request{
+.request {
   background-color: rgba(0, 0, 139, 0.308);
   border-radius: 5px;
-  border:1px solid darkblue;
+  border: 1px solid darkblue;
 }
 
-.link{
+.link {
   color: white;
 }
 
-.quote{
+.quote {
   font-weight: bold;
   font-style: italic;
 }
 
-.App{
+.App {
   width: 100vw;
   height: 100vh;
   background-color: var(--mainWhite);
+  font-family: "Cabin";
 }
 
-.main-page{
+.main-page {
   width: 100vw;
   height: 100vh;
 }
 
-.login-form{
+.login-form {
   background-color: var(--primaryColor);
   border-radius: 5px;
 }
 
-.info-card{
+.info-card {
   background-color: var(--primaryColor);
   border-radius: 5px;
 }
 
-.main-button{
+.main-button {
   background-color: darkblue;
   border-radius: 10px;
 }
 
-.main-button-cancel{
+.main-button-cancel {
   background-color: red;
   border-radius: 10px;
 }
 
-.sec-button{
+.sec-button {
   background-color: white;
   border-radius: 10px;
 }
 
-.main-button:hover{
+.main-button:hover {
   background-color: darkcyan;
   border-radius: 10px;
 }
