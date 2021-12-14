@@ -19,7 +19,6 @@ export const readRequest = (data) => (dispatch) => {
       });
     })
     .catch((err) => {
-      notification.error({ message: "Failed to get request" });
       return dispatch({
         type: REQUEST_FAIL,
       });
