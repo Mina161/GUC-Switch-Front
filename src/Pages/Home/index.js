@@ -119,7 +119,7 @@ export const Home = ({
               })}
           </div>
           {matchesLoading && <div className="text-center"><Loading color="var(--primaryColor)"/></div>}
-          {!matchesLoading && matches.length === 0 && <div className="text-center"><h3>No Matches found</h3></div>}
+          {!matchesLoading && matches?.length === 0 && <div className="text-center"><h3>No Matches found</h3></div>}
           <div className="text-center position-absolute bottom-0 start-50 translate-middle-x">
             <Pagination
               onChange={getPage}
