@@ -19,6 +19,7 @@ export const getMatches = (data) => (dispatch) => {
           results: data.results,
           thisPage: data.thisPage,
           limit: data.limit,
+          count: data.count,
         },
       });
     })

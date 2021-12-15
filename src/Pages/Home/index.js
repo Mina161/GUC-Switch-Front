@@ -2,9 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { Row, Col, Card, Button, Tooltip, Pagination } from "antd";
 import SingleRequest from "../../app/components/Request/SingleRequest";
-import { readRequest, addRequest } from "../../app/store/actions/requestActions";
+import {
+  readRequest,
+  addRequest,
+} from "../../app/store/actions/requestActions";
 import { BiMessageAltAdd } from "react-icons/bi";
-import { AddRequest } from "../../app/components";
+import { AddRequest, Loading } from "../../app/components";
 import SingleMatch from "../../app/components/Match/SingleMatch";
 import { getMatches } from "../../app/store/actions/matchActions";
 
@@ -14,55 +17,65 @@ export const Home = ({
   request,
   requestLoading,
   matches,
+  thisPage,
+  count,
   matchesLoading,
   readRequest,
   addRequest,
-  getMatches
+  getMatches,
 }) => {
   React.useEffect(() => {
     readRequest({ appNo: user?.appNo });
-    getMatches({ appNo: user?.appNo, page:1, limit:4})
+    getMatches({ appNo: user?.appNo, page: parseInt(thisPage), limit: 4 });
   }, []);
 
-  const [addModal, setAddModal] = React.useState(false)
+  const getPage = (e) => {
+    getMatches({ appNo: user?.appNo, page: e, limit: 4 });
+  };
 
-  const [requestData, setRequestData] = React.useState(
-    {
-      appNo: user?.appNo,
-      major: undefined,
-      semester: undefined,
-      tutNo: undefined,
-      goTo: undefined,
-      germanLevel: undefined,
-      englishLevel: undefined
-    }
-  )
+  const [addModal, setAddModal] = React.useState(false);
 
-  let {appNo, major, semester, tutNo, goTo, germanLevel, englishLevel} = requestData
+  const [requestData, setRequestData] = React.useState({
+    appNo: user?.appNo,
+    major: undefined,
+    semester: undefined,
+    tutNo: undefined,
+    goTo: undefined,
+    germanLevel: undefined,
+    englishLevel: undefined,
+  });
+
+  let { appNo, major, semester, tutNo, goTo, germanLevel, englishLevel } =
+    requestData;
 
   const onChange = (e) => {
-    let {name, value} = e.target;
-    setRequestData({...requestData, [name]: value})
-  }
+    let { name, value } = e.target;
+    setRequestData({ ...requestData, [name]: value });
+  };
 
   const submitAdd = () => {
-    let data = new FormData()
-    data.append("appNo", appNo)
-    data.append("major", major)
-    data.append("semester", semester)
-    data.append("tutNo", tutNo)
+    let data = new FormData();
+    data.append("appNo", appNo);
+    data.append("major", major);
+    data.append("semester", semester);
+    data.append("tutNo", tutNo);
     goTo.forEach((tut) => {
       data.append("goTo", tut);
     });
-    data.append("germanLevel", germanLevel)
-    data.append("englishLevel", englishLevel)
-    addRequest(data)
-    setAddModal(false)
-  }
+    data.append("germanLevel", germanLevel);
+    data.append("englishLevel", englishLevel);
+    addRequest(data);
+    setAddModal(false);
+  };
 
   return (
     <div className="main-page">
-      <AddRequest visible={addModal} onCancel={() => setAddModal(false)} onChange={onChange} onFinish={submitAdd}/>
+      <AddRequest
+        visible={addModal}
+        onCancel={() => setAddModal(false)}
+        onChange={onChange}
+        onFinish={submitAdd}
+      />
       <h1 className="text-center">Home</h1>
       <p className="text-center quote">{quote}</p>
       <Row>
@@ -78,7 +91,10 @@ export const Home = ({
               <h3>Your request</h3>
               {!requestLoading && !request && (
                 <Tooltip title="Add request">
-                  <Button className="sec-button" onClick={() => setAddModal(true)}>
+                  <Button
+                    className="sec-button"
+                    onClick={() => setAddModal(true)}
+                  >
                     <BiMessageAltAdd />
                   </Button>
                 </Tooltip>
@@ -86,18 +102,29 @@ export const Home = ({
             </div>
             {!requestLoading && request && <SingleRequest request={request} />}
             {!requestLoading && !request && "No Requests"}
+            {requestLoading && <div className="text-center"><Loading color="white"/></div>}
           </Card>
         </Col>
         <Col md={14}>
-        <Row className="d-flex justify-content-center position-relative"><h2 className="text-center">Your Matches</h2></Row>
-        <div className="d-flex flex-wrap">
-          {
-            matches && matches.length > 0 && matches.map((match, idx) => {
-              return <SingleMatch key={idx} match={match}/>
-            })
-          }
-        </div>
-        <div className="text-center position-absolute bottom-0 start-50 translate-middle-x"><Pagination/></div>
+          <Row className="d-flex justify-content-center position-relative">
+            <h2 className="text-center">Your Matches</h2>
+          </Row>
+          <div className="d-flex flex-wrap">
+            {matches &&
+              !matchesLoading &&
+              matches.length > 0 &&
+              matches.map((match, idx) => {
+                return <SingleMatch key={idx} match={match} />;
+              })}
+          </div>
+          {matchesLoading && <div className="text-center"><Loading color="var(--primaryColor)"/></div>}
+          <div className="text-center position-absolute bottom-0 start-50 translate-middle-x">
+            <Pagination
+              onChange={getPage}
+              total={count}
+              pageSize={4}
+            />
+          </div>
         </Col>
       </Row>
     </div>
@@ -110,13 +137,15 @@ const mapStateToProps = (state) => ({
   request: state?.requests?.request,
   requestLoading: state?.requests?.isLoading,
   matches: state?.matches?.matches,
-  matchesLoading: state?.matches?.isLoading
+  matchesLoading: state?.matches?.isLoading,
+  count: state?.matches?.count,
+  thisPage: state?.matches?.thisPage,
 });
 
 const mapDispatchToProps = {
   readRequest,
   addRequest,
-  getMatches
+  getMatches,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

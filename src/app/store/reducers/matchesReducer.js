@@ -23,12 +23,15 @@ export default function store(state = initialState, action) {
         matches: payload.results,
         thisPage: payload.thisPage,
         limit: payload.limit,
+        count: payload.count,
         isLoading: false,
         isError: false,
       };
     case CONTACT_SUCCESS:
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        isError: false,
       };
     case MATCH_FAIL:
       return {

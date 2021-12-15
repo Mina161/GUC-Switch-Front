@@ -4,7 +4,8 @@ import 'antd/dist/antd.css';
 import App from './App';
 import store from './app/store/store';
 import { loadUser } from "./app/store/actions/authActions";
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 

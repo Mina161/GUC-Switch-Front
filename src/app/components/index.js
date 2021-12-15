@@ -1,2 +1,3 @@
 import { AddRequest, EditRequest } from "./Request/RequestComponents";
-export { AddRequest, EditRequest };
+import { Loading } from "./Loader/Loader";
+export { AddRequest, EditRequest, Loading };

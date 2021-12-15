@@ -4,7 +4,15 @@ import { connect } from "react-redux";
 import { contactMatch } from "../../store/actions/matchActions";
 import { updateRequest } from "../../store/actions/requestActions";
 
-export const SingleMatch = ({ match, user, userRequest, contactMatch, updateRequest }) => {
+export const SingleMatch = ({
+  match,
+  user,
+  userRequest,
+  contactMatch,
+  updateRequest,
+}) => {
+  const contactedBefore =
+    userRequest?.contacted && userRequest?.contacted?.includes(match.appNo);
   return (
     <div className="col-md-6 p-2">
       <Card>
@@ -14,11 +22,16 @@ export const SingleMatch = ({ match, user, userRequest, contactMatch, updateRequ
           <p>German Level: {match.germanLevel}</p>
           <p>English Level: {match.englishLevel}</p>
           <div className="text-center position-absolute bottom-0 start-50">
-            <Tooltip title="We will send them an email so you don't have to worry">
+            <Tooltip title={contactedBefore? "You have already contacted this person":"We will send them an email so you don't have to worry"}>
               <Button
-                disabled={userRequest?.contacted && userRequest?.contacted?.includes(match.appNo)}
+                disabled={
+                    contactedBefore
+                }
                 onClick={() =>
-                  contactMatch({ sender: user?.appNo, receiver: match.appNo }, updateRequest)
+                  contactMatch(
+                    { sender: user?.appNo, receiver: match.appNo },
+                    updateRequest
+                  )
                 }
               >
                 Contact Them!
@@ -33,7 +46,7 @@ export const SingleMatch = ({ match, user, userRequest, contactMatch, updateRequ
 
 const mapStateToProps = (state) => ({
   user: state?.auth?.user,
-  userRequest: state?.requests?.request
+  userRequest: state?.requests?.request,
 });
 
 const mapDispatchToProps = { contactMatch, updateRequest };
