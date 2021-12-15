@@ -65,6 +65,7 @@ export const Home = ({
     data.append("germanLevel", germanLevel);
     data.append("englishLevel", englishLevel);
     addRequest(data);
+    getMatches({ appNo: user?.appNo, page: parseInt(thisPage), limit: 4 });
     setAddModal(false);
   };
 
