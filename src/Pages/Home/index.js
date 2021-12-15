@@ -80,7 +80,7 @@ export const Home = ({
       <h1 className="text-center">Home</h1>
       <p className="text-center quote">{quote}</p>
       <Row>
-        <Col className="p-3" md={10}>
+        <div className="p-3 col-md-4">
           <Card className="info-card">
             <h3>Hello {user.name}</h3>
             <p>GUC ID: {user.appNo}</p>
@@ -105,9 +105,9 @@ export const Home = ({
             {!requestLoading && !request && "No Requests"}
             {requestLoading && <div className="text-center"><Loading color="white"/></div>}
           </Card>
-        </Col>
-        <Col md={14}>
-          <Row className="d-flex justify-content-center position-relative">
+        </div>
+        <div className="col-md-8 p-2 position-relative">
+          <Row className="d-flex justify-content-center">
             <h2 className="text-center">Your Matches</h2>
           </Row>
           <div className="d-flex flex-wrap">
@@ -119,6 +119,7 @@ export const Home = ({
               })}
           </div>
           {matchesLoading && <div className="text-center"><Loading color="var(--primaryColor)"/></div>}
+          {!matchesLoading && matches.length === 0 && <div className="text-center"><h3>No Matches found</h3></div>}
           <div className="text-center position-absolute bottom-0 start-50 translate-middle-x">
             <Pagination
               onChange={getPage}
@@ -126,7 +127,7 @@ export const Home = ({
               pageSize={4}
             />
           </div>
-        </Col>
+        </div>
       </Row>
     </div>
   );
