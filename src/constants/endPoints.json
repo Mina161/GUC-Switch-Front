@@ -3,5 +3,9 @@
       "login":"login",
       "signup":"signup"
    },
-   "request":"request"
+   "request":"request",
+   "matches":{
+      "getMatch":"match",
+      "contactMatch":"match/contact"
+   }
 }

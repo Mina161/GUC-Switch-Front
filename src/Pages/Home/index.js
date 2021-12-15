@@ -1,10 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Row, Col, Card, Button, Tooltip } from "antd";
+import { Row, Col, Card, Button, Tooltip, Pagination } from "antd";
 import SingleRequest from "../../app/components/Request/SingleRequest";
 import { readRequest, addRequest } from "../../app/store/actions/requestActions";
 import { BiMessageAltAdd } from "react-icons/bi";
 import { AddRequest } from "../../app/components";
+import SingleMatch from "../../app/components/Match/SingleMatch";
+import { getMatches } from "../../app/store/actions/matchActions";
 
 export const Home = ({
   user,
@@ -12,18 +14,21 @@ export const Home = ({
   request,
   requestLoading,
   matches,
+  matchesLoading,
   readRequest,
-  addRequest
+  addRequest,
+  getMatches
 }) => {
   React.useEffect(() => {
-    readRequest({ appNo: user.appNo });
+    readRequest({ appNo: user?.appNo });
+    getMatches({ appNo: user?.appNo, page:1, limit:4})
   }, []);
 
   const [addModal, setAddModal] = React.useState(false)
 
   const [requestData, setRequestData] = React.useState(
     {
-      appNo: user.appNo,
+      appNo: user?.appNo,
       major: undefined,
       semester: undefined,
       tutNo: undefined,
@@ -83,7 +88,17 @@ export const Home = ({
             {!requestLoading && !request && "No Requests"}
           </Card>
         </Col>
-        <Col md={14}></Col>
+        <Col md={14}>
+        <Row className="d-flex justify-content-center position-relative"><h2 className="text-center">Your Matches</h2></Row>
+        <div className="d-flex flex-wrap">
+          {
+            matches && matches.length > 0 && matches.map((match, idx) => {
+              return <SingleMatch key={idx} match={match}/>
+            })
+          }
+        </div>
+        <div className="text-center position-absolute bottom-0 start-50 translate-middle-x"><Pagination/></div>
+        </Col>
       </Row>
     </div>
   );
@@ -94,11 +109,14 @@ const mapStateToProps = (state) => ({
   quote: state?.auth?.quote,
   request: state?.requests?.request,
   requestLoading: state?.requests?.isLoading,
+  matches: state?.matches?.matches,
+  matchesLoading: state?.matches?.isLoading
 });
 
 const mapDispatchToProps = {
   readRequest,
-  addRequest
+  addRequest,
+  getMatches
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
