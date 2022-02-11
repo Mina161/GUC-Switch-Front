@@ -47,7 +47,8 @@ export const Login = ({ login, user }) => {
             autoComplete="on"
           >
             <Form.Item
-              label="GUC ID Number"
+              className="login-item"
+              label={<label className="login-label">GUC ID Number</label>}
               name="appNo"
               rules={[
                 { required: true, message: "Please input your id number" },
@@ -56,7 +57,7 @@ export const Login = ({ login, user }) => {
               <Input placeholder="49-XXXXX" name="appNo" onChange={onChange} />
             </Form.Item>
             <Form.Item
-              label="Password"
+            label={<label className="login-label">Password</label>}
               name="password"
               rules={[
                 { required: true, message: "Please input your password" },

@@ -1,4 +1,4 @@
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL } from "./types";
+import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS } from "./types";
 import { postRequest } from "../../../core/network";
 import { auth as authEnpoint } from "../../../constants/endPoints.json";
 import { notification } from "antd";
@@ -21,6 +21,13 @@ export const loadUser = () => async (dispatch, getState) => {
       type: LOGIN_FAIL,
     });
   }
+};
+
+export const logout = () => async (dispatch, getState) => {
+  localStorage.removeItem("switchingAppUser");
+  return dispatch({
+    type: LOGOUT_SUCCESS,
+  });
 };
 
 export const login = (data) => (dispatch) => {
@@ -52,7 +59,7 @@ export const signup = (data) => (dispatch) => {
       });
     })
     .catch((err) => {
-      notification.error({message: "Wrong Data"})
+      notification.error({message: "GUC ID already exists"})
       return dispatch({
         type: LOGIN_FAIL,
       });

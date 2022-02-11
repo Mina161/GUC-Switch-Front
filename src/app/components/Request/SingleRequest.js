@@ -101,9 +101,9 @@ export const SingleRequest = ({ request, deleteRequest, updateRequest }) => {
         onChange={onChange}
       />
       <div className="d-flex justify-content-between">
-        <h4>Switching Request of {request?.appNo}</h4>
+        <h4 className="card-text">Switching Request of {request?.appNo}</h4>
         <Dropdown overlay={menu} trigger={["click"]}>
-          <BiDotsVerticalRounded size={25} />
+          <BiDotsVerticalRounded cursor="pointer" size={25} />
         </Dropdown>
       </div>
       <div>

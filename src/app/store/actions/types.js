@@ -3,6 +3,10 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGIN = "LOGIN";
 
+//Logout
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const LOGOUT = "LOGOUT";
+
 //Request
 export const REQUEST_SUCCESS = "REQUEST_SUCCESS";
 export const REQUEST_FAIL = "REQUEST_FAIL";

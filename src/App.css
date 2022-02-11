@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&display=swap');
 :root {
-  --primaryColor: #69bdd6;
+  --primaryColor: #150249;
   --secColor: #6ecb63;
-  --terColor: #ec9cd3;
-  --mainWhite: #fbf4e9;
+  --terColor: #E69C31;
+  --mainWhite: #faf9f8;
 }
 
 .request {
   background-color: rgba(0, 0, 139, 0.308);
   border-radius: 5px;
+  color: var(--mainWhite) !important;
   border: 1px solid darkblue;
 }
 
@@ -22,14 +23,11 @@
 }
 
 .App {
-  width: 100vw;
-  height: 100vh;
   background-color: var(--mainWhite);
   font-family: "Cabin";
 }
 
 .main-page {
-  width: 100vw;
   height: 100vh;
 }
 
@@ -38,9 +36,18 @@
   border-radius: 5px;
 }
 
+.login-label {
+  color: var(--mainWhite) !important;
+}
+
 .info-card {
   background-color: var(--primaryColor);
+  color: var(--mainWhite) !important;
   border-radius: 5px;
+}
+
+.card-text{
+  color: var(--mainWhite) !important;
 }
 
 .main-button {

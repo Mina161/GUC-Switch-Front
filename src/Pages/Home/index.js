@@ -7,9 +7,11 @@ import {
   addRequest,
 } from "../../app/store/actions/requestActions";
 import { BiMessageAltAdd } from "react-icons/bi";
+import {FiLogOut} from "react-icons/fi";
 import { AddRequest, Loading } from "../../app/components";
 import SingleMatch from "../../app/components/Match/SingleMatch";
 import { getMatches } from "../../app/store/actions/matchActions";
+import { logout } from "../../app/store/actions/authActions";
 
 export const Home = ({
   user,
@@ -23,6 +25,7 @@ export const Home = ({
   readRequest,
   addRequest,
   getMatches,
+  logout
 }) => {
   React.useEffect(() => {
     readRequest({ appNo: user?.appNo });
@@ -79,17 +82,27 @@ export const Home = ({
       />
       <h1 className="text-center">Home</h1>
       <p className="text-center quote">{quote}</p>
-      <Row>
+      <div className="d-flex flex-wrap justify-content-center">
         <div className="p-3 col-md-4">
           <Card className="info-card">
-            <h3>Hello {user.name}</h3>
+          <div className="d-flex justify-content-between">
+              <h3 className="card-text">Hello {user.name}</h3>
+                <Tooltip title="Logout">
+                  <Button
+                    className="sec-button"
+                    onClick={() => logout()}
+                  >
+                    <FiLogOut />
+                  </Button>
+                </Tooltip>
+            </div>
             <p>GUC ID: {user.appNo}</p>
             <p>Phone: {user.phoneNo}</p>
             <p>Email: {user.email}</p>
           </Card>
           <Card className="info-card">
             <div className="d-flex justify-content-between">
-              <h3>Your request</h3>
+              <h3 className="card-text">Your request</h3>
               {!requestLoading && !request && (
                 <Tooltip title="Add request">
                   <Button
@@ -100,16 +113,14 @@ export const Home = ({
                   </Button>
                 </Tooltip>
               )}
-            </div>
+            </div><br/>
             {!requestLoading && request && <SingleRequest request={request} />}
             {!requestLoading && !request && "No Requests"}
             {requestLoading && <div className="text-center"><Loading color="white"/></div>}
           </Card>
         </div>
-        <div className="col-md-8 p-2 position-relative">
-          <Row className="d-flex justify-content-center">
-            <h2 className="text-center">Your Matches</h2>
-          </Row>
+        <div className="p-2 col-lg-8">
+          <h2 className="text-center">Your Matches</h2>
           <div className="d-flex flex-wrap">
             {matches &&
               !matchesLoading &&
@@ -120,7 +131,7 @@ export const Home = ({
           </div>
           {matchesLoading && <div className="text-center"><Loading color="var(--primaryColor)"/></div>}
           {!matchesLoading && matches?.length === 0 && <div className="text-center"><h3>No Matches found</h3></div>}
-          <div className="text-center position-absolute bottom-0 start-50 translate-middle-x">
+          <div className="text-center">
             <Pagination
               onChange={getPage}
               total={count}
@@ -128,7 +139,7 @@ export const Home = ({
             />
           </div>
         </div>
-      </Row>
+      </div>
     </div>
   );
 };
@@ -148,6 +159,7 @@ const mapDispatchToProps = {
   readRequest,
   addRequest,
   getMatches,
+  logout
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

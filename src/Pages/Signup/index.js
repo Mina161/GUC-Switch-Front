@@ -55,14 +55,14 @@ export const Signup = ({ signup, user }) => {
             autoComplete="on"
           >
             <Form.Item
-              label="Name"
+              label={<label className="login-label">Name</label>}
               name="name"
               rules={[{ required: true, message: "Please input your name" }]}
             >
               <Input placeholder="John Doe" name="name" onChange={onChange} />
             </Form.Item>
             <Form.Item
-              label="GUC ID Number"
+              label={<label className="login-label">GUC ID Number</label>}
               name="appNo"
               rules={[
                 { required: true, message: "Please input your GUC Id number" },
@@ -75,7 +75,7 @@ export const Signup = ({ signup, user }) => {
               <Input placeholder="49-XXXXX" name="appNo" onChange={onChange} />
             </Form.Item>
             <Form.Item
-              label="Mobile Number"
+              label={<label className="login-label">Mobile Number</label>}
               name="phoneNo"
               rules={[
                 { required: true, message: "Please input your mobile number" },
@@ -92,7 +92,7 @@ export const Signup = ({ signup, user }) => {
               />
             </Form.Item>
             <Form.Item
-              label="Email"
+              label={<label className="login-label">Email</label>}
               name="email"
               rules={[
                 { required: true, message: "Please input your email" },
@@ -106,7 +106,7 @@ export const Signup = ({ signup, user }) => {
               />
             </Form.Item>
             <Form.Item
-              label="Password"
+              label={<label className="login-label">Password</label>}
               name="password"
               rules={[
                 { required: true, message: "Please confirm your password" },
@@ -116,7 +116,7 @@ export const Signup = ({ signup, user }) => {
               <Input.Password name="password" onChange={onChange} />
             </Form.Item>
             <Form.Item
-              label="Confirm Password"
+              label={<label className="login-label">Confirm Password</label>}
               name="confirmPassword"
               dependencies={['password']}
               rules={[

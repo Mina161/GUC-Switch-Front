@@ -1,4 +1,4 @@
-import { LOGIN, LOGIN_FAIL, LOGIN_SUCCESS } from "../actions/types";
+import { LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT_SUCCESS } from "../actions/types";
 
 const initialState = {
   user: null,
@@ -61,6 +61,13 @@ export default function store(state = initialState, action) {
         isLoading: false,
         isError: true,
       };
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        user: null,
+        isLoading: false,
+        isError: false,
+      }
     default:
       return state;
   }
