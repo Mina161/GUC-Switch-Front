@@ -37,6 +37,7 @@ export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
             <Select.Option value="EDPT">EDPT</Select.Option>
             <Select.Option value="Architecture">Architecture</Select.Option>
             <Select.Option value="Civil">Civil</Select.Option>
+            <Select.Option value="BI">BI</Select.Option>
             <Select.Option value="Management">Management</Select.Option>
             <Select.Option value="Pharmacy">Pharmacy</Select.Option>
             <Select.Option value="Law">Law</Select.Option>
