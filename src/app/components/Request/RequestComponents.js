@@ -47,6 +47,7 @@ export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
         <Form.Item
           label="Semester"
           name="semester"
+          help="Next semester number"
           rules={[{ required: true, message: "Please select your semester" }]}
         >
           <Select
@@ -84,6 +85,7 @@ export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
         <Form.Item
           label="Target Tutorials"
           name="goTo"
+          help="Press Enter/Return after each number"
           rules={[
             {
               required: true,
@@ -94,6 +96,7 @@ export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
           <Select
             name="goTo"
             mode="tags"
+            placeholder="Numbers only"
             onChange={(e) => onChange({ target: { name: "goTo", value: e } })}
           />
         </Form.Item>
@@ -199,6 +202,7 @@ export const EditRequest = ({
             <Select.Option value="EDPT">EDPT</Select.Option>
             <Select.Option value="Architecture">Architecture</Select.Option>
             <Select.Option value="Civil">Civil</Select.Option>
+            <Select.Option value="BI">BI</Select.Option>
             <Select.Option value="Management">Management</Select.Option>
             <Select.Option value="Pharmacy">Pharmacy</Select.Option>
             <Select.Option value="Law">Law</Select.Option>
@@ -208,6 +212,7 @@ export const EditRequest = ({
         <Form.Item
           label="Semester"
           name="semester"
+          help="Next semester number"
           rules={[{ required: true, message: "Please select your semester" }]}
         >
           <Select
@@ -245,6 +250,7 @@ export const EditRequest = ({
         <Form.Item
           label="Target Tutorials"
           name="goTo"
+          help="Press Enter/Return after each number"
           rules={[
             {
               required: true,
@@ -255,6 +261,7 @@ export const EditRequest = ({
           <Select
             name="goTo"
             mode="tags"
+            placeholder="Numbers only"
             onChange={(e) => onChange({ target: { name: "goTo", value: e } })}
           />
         </Form.Item>
