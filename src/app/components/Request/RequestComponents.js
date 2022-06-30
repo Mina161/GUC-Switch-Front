@@ -1,5 +1,5 @@
 import { Modal, Form, Input, Button, Select } from "antd";
-
+const semesters = [1,2,3,4,5,6,7,8,9,10,11,12];
 export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -56,18 +56,11 @@ export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
               onChange({ target: { name: "semester", value: e } })
             }
           >
-            <Select.Option value={1}>1</Select.Option>
-            <Select.Option value={2}>2</Select.Option>
-            <Select.Option value={3}>3</Select.Option>
-            <Select.Option value={4}>4</Select.Option>
-            <Select.Option value={5}>5</Select.Option>
-            <Select.Option value={6}>6</Select.Option>
-            <Select.Option value={7}>7</Select.Option>
-            <Select.Option value={8}>8</Select.Option>
-            <Select.Option value={9}>9</Select.Option>
-            <Select.Option value={10}>10</Select.Option>
-            <Select.Option value={11}>11</Select.Option>
-            <Select.Option value={12}>12</Select.Option>
+           {
+             semesters.map(val => {
+              return <Select.Option value={val}>{val}</Select.Option>
+             })
+           }
           </Select>
         </Form.Item>
         <Form.Item
@@ -221,18 +214,11 @@ export const EditRequest = ({
               onChange({ target: { name: "semester", value: e } })
             }
           >
-            <Select.Option value={1}>1</Select.Option>
-            <Select.Option value={2}>2</Select.Option>
-            <Select.Option value={3}>3</Select.Option>
-            <Select.Option value={4}>4</Select.Option>
-            <Select.Option value={5}>5</Select.Option>
-            <Select.Option value={6}>6</Select.Option>
-            <Select.Option value={7}>7</Select.Option>
-            <Select.Option value={8}>8</Select.Option>
-            <Select.Option value={9}>9</Select.Option>
-            <Select.Option value={10}>10</Select.Option>
-            <Select.Option value={11}>11</Select.Option>
-            <Select.Option value={12}>12</Select.Option>
+          {
+             semesters.map(val => {
+              return <Select.Option value={val}>{val}</Select.Option>
+             })
+           }
           </Select>
         </Form.Item>
         <Form.Item
