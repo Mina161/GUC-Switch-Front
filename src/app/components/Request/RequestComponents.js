@@ -1,5 +1,6 @@
 import { Modal, Form, Input, Button, Select } from "antd";
 const semesters = [1,2,3,4,5,6,7,8,9,10,11,12];
+var curDate = new Date();
 export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -57,9 +58,11 @@ export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
             }
           >
            {
-             semesters.map(val => {
-              return <Select.Option value={val}>{val}</Select.Option>
-             })
+             semesters.map(val => { return(
+             (curDate.getMonth()+1 > 9 && curDate.getMonth()+1 < 11 && val%2 == 1 && <Select.Option value={val}>{val}</Select.Option>)
+             || 
+             (val%2 == 0 && <Select.Option value={val}>{val}</Select.Option>)
+             )})
            }
           </Select>
         </Form.Item>
@@ -215,9 +218,11 @@ export const EditRequest = ({
             }
           >
           {
-             semesters.map(val => {
-              return <Select.Option value={val}>{val}</Select.Option>
-             })
+            semesters.map(val => { return(
+             (curDate.getMonth()+1 > 9 && curDate.getMonth()+1 < 11 && val%2 == 1 && <Select.Option value={val}>{val}</Select.Option>)
+             || 
+             (val%2 == 0 && <Select.Option value={val}>{val}</Select.Option>)
+             )})
            }
           </Select>
         </Form.Item>
