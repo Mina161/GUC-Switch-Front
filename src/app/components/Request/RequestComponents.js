@@ -59,9 +59,9 @@ export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
           >
            {
              semesters.map(val => { return(
-             (curDate.getMonth()+1 > 9 && curDate.getMonth()+1 < 11 && val%2 == 1 && <Select.Option value={val}>{val}</Select.Option>)
+             (curDate.getMonth()+1 >= 9 && curDate.getMonth()+1 <= 11 && val%2 === 1 && <Select.Option value={val}>{val}</Select.Option>)
              || 
-             (val%2 == 0 && <Select.Option value={val}>{val}</Select.Option>)
+             (val%2 === 0 && <Select.Option value={val}>{val}</Select.Option>)
              )})
            }
           </Select>
@@ -219,9 +219,9 @@ export const EditRequest = ({
           >
           {
             semesters.map(val => { return(
-             (curDate.getMonth()+1 > 9 && curDate.getMonth()+1 < 11 && val%2 == 1 && <Select.Option value={val}>{val}</Select.Option>)
+             (curDate.getMonth()+1 >= 9 && curDate.getMonth()+1 <= 11 && val%2 === 1 && <Select.Option value={val}>{val}</Select.Option>)
              || 
-             (val%2 == 0 && <Select.Option value={val}>{val}</Select.Option>)
+             (val%2 === 0 && <Select.Option value={val}>{val}</Select.Option>)
              )})
            }
           </Select>
