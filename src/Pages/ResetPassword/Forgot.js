@@ -2,8 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { Button, Form, Input } from "antd";
 import { requestReset } from "../../app/store/actions/passwordActions";
+import { useHistory } from "react-router-dom";
 
 export const ForgotPassword = ({ requestReset }) => {
+  let {history} = useHistory();
 
   const [userData, setUserData] = React.useState({
     appNo: undefined,
@@ -20,6 +22,7 @@ export const ForgotPassword = ({ requestReset }) => {
     user.append("appNo", userData.appNo);
     user.append("email", userData.email);
     requestReset(user);
+    history.push('/')
   };
 
   const onFinishFailed = (errorInfo) => {

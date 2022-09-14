@@ -8,6 +8,7 @@ export const requestReset = (data) => (dispatch) => {
     postRequest(data, undefined, undefined, password.forgot)
       .then((response) => {
         const { data } = response;
+        notification.success({message: "Email Sent!"})
         return dispatch({
           type: GENERATEREQ_SUCCESS,
           payload: data,
@@ -26,6 +27,7 @@ export const requestReset = (data) => (dispatch) => {
     postRequest(data, undefined, undefined, password.reset)
       .then((response) => {
         const { data } = response;
+        notification.success({message: "Password Reset!"})
         return dispatch({
           type: RESET_SUCCESS,
           payload: data,
