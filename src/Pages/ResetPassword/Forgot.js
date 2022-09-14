@@ -51,7 +51,7 @@ export const ForgotPassword = ({ requestReset }) => {
               <Input placeholder="49-XXXXX" name="appNo" onChange={onChange} />
             </Form.Item>
             <Form.Item
-            label={<label className="login-label">Password</label>}
+            label={<label className="login-label">Email</label>}
               name="email"
               rules={[
                 { required: true, message: "Please input your email" },

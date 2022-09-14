@@ -7,5 +7,9 @@
    "matches":{
       "getMatch":"match",
       "contactMatch":"match/contact"
+   },
+   "password":{
+      "forgot":"generateReset",
+      "reset":"resetPassword"
    }
 }

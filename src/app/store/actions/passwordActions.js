@@ -1,11 +1,11 @@
 import { GENERATEREQ, GENERATEREQ_SUCCESS, GENERATEREQ_FAIL, RESET, RESET_SUCCESS, RESET_FAIL } from "./types";
 import { getRequest, postRequest } from "../../../core/network";
-import { auth as authEnpoint } from "../../../constants/endPoints.json";
+import { password } from "../../../constants/endPoints.json";
 import { notification } from "antd";
 
 export const requestReset = (data) => (dispatch) => {
     dispatch({ type: GENERATEREQ });
-    postRequest(data, undefined, undefined, authEnpoint.signup)
+    postRequest(data, undefined, undefined, password.forgot)
       .then((response) => {
         const { data } = response;
         return dispatch({
@@ -23,7 +23,7 @@ export const requestReset = (data) => (dispatch) => {
 
   export const resetPass = (data) => (dispatch) => {
     dispatch({ type: RESET });
-    postRequest(data, undefined, undefined, authEnpoint.signup)
+    postRequest(data, undefined, undefined, password.reset)
       .then((response) => {
         const { data } = response;
         return dispatch({
