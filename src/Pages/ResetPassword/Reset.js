@@ -7,7 +7,7 @@ import { useParams, useHistory } from "react-router-dom";
 export const ResetPassword = ({ resetPass }) => {
   let {token} = useParams();
   let history = useHistory();
-
+  console.log(token)
   const [userData, setUserData] = React.useState({
     appNo: undefined,
     password: undefined,
@@ -111,7 +111,7 @@ export const ResetPassword = ({ resetPass }) => {
             </Form.Item>
             <div className="text-center">
               <Button className="main-button" type="primary" htmlType="submit">
-                Sign Up
+                Reset Password
               </Button>
             </div>
           </Form>

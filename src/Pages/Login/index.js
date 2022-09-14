@@ -66,11 +66,16 @@ export const Login = ({ login, user }) => {
               <Input.Password name="password" onChange={onChange} />
             </Form.Item>
             <div className="d-flex justify-content-center">
-              <Button className="main-button mx-3" type="primary" htmlType="submit">
-                Log in
-              </Button>
-              <a className="link" href="/signup">Register user</a><br/>
-              <a className="link" href="/forgot-password">Forgot Password?</a>
+                <Button className="main-button mx-3" type="primary" htmlType="submit">
+                  Log in
+                </Button>
+              <div>
+                <a className="link" href="/signup">Register user</a>
+              </div>
+              <br/>
+              <div>
+                <a className="link" href="/forgot-password">Forgot Password?</a>
+              </div>
             </div>
           </Form>
         </div>

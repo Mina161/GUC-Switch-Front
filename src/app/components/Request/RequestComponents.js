@@ -1,11 +1,17 @@
 import { Modal, Form, Input, Button, Select } from "antd";
 const moment = require('moment')
-const semesters = [1,2,3,4,5,6,7,8,9,10,11,12];
-var curDate = moment();
+var semesters = [];
+var curMonth = moment().month() + 1;
 export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+  
+  if(curMonth > 8 && curMonth < 11){
+    semesters = [1,3,5,7,9,11]
+  } else {
+    semesters = [2,4,6,8,10,12]
+  }
 
   return (
     <Modal
@@ -59,11 +65,7 @@ export const AddRequest = ({ visible, onCancel, onChange, onFinish }) => {
             }
           >
            {
-             semesters.map(val => { return(
-             (curDate.month() >= 9 && curDate.month() <= 11 && val%2 === 1 && <Select.Option value={val}>{val}</Select.Option>)
-             || 
-             (val%2 === 0 && <Select.Option value={val}>{val}</Select.Option>)
-             )})
+             semesters.map(val => { return(<Select.Option value={val}>{val}</Select.Option>)})
            }
           </Select>
         </Form.Item>
@@ -218,12 +220,8 @@ export const EditRequest = ({
               onChange({ target: { name: "semester", value: e } })
             }
           >
-          {
-            semesters.map(val => { return(
-             (curDate.month() >= 9 && curDate.month() <= 11 && val%2 === 1 && <Select.Option value={val}>{val}</Select.Option>)
-             || 
-             (val%2 === 0 && <Select.Option value={val}>{val}</Select.Option>)
-             )})
+            {
+             semesters.map(val => { return(<Select.Option value={val}>{val}</Select.Option>)})
            }
           </Select>
         </Form.Item>
