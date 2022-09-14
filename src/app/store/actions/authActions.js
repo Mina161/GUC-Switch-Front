@@ -32,7 +32,7 @@ export const logout = () => async (dispatch, getState) => {
 
 export const login = (data) => (dispatch) => {
   dispatch({ type: LOGIN });
-  getRequest(undefined, data, authEnpoint.login)
+  postRequest(data, undefined, authEnpoint.login)
     .then((response) => {
       const { data } = response;
       return dispatch({

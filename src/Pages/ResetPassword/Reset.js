@@ -11,7 +11,6 @@ export const ResetPassword = ({ resetPass }) => {
   const [userData, setUserData] = React.useState({
     appNo: undefined,
     password: undefined,
-    token: token,
     email: undefined,
   });
 
@@ -27,7 +26,7 @@ export const ResetPassword = ({ resetPass }) => {
     data.append("appNo", appNo);
     data.append("email", email);
     data.append("password", password);
-    data.append("token", token);
+    token && data.append("token", token);
     resetPass(data);
     history.push("/");
   };
