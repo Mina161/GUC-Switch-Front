@@ -69,8 +69,8 @@ export const Login = ({ login, user }) => {
               <Button className="main-button mx-3" type="primary" htmlType="submit">
                 Log in
               </Button>
-              <a className="link" href="/signup">Register user</a>
-              <a className="link" href="/signup">Forgot Password?</a>
+              <a className="link" href="/signup">Register user</a><br/>
+              <a className="link" href="/forgot-password">Forgot Password?</a>
             </div>
           </Form>
         </div>

@@ -11,7 +11,7 @@ export const Router = () => {
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/forgot-password" exact component={ForgotPassword} />
-        <Route path="/password-reset/:token" exact component={ResetPassword} />
+        <Route path="/reset-password/:token" exact component={ResetPassword} />
         <ProtectedRoute path="/" exact component={Home} />
       </Switch>
     </>
