@@ -6,5 +6,5 @@ import matchesReducer from "./matchesReducer";
 export default combineReducers({
     auth: authReducer,
     requests: requestsReducer,
-    matches: matchesReducer
+    matches: matchesReducer,
 });

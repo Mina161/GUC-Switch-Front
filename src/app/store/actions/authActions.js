@@ -1,5 +1,5 @@
 import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS } from "./types";
-import { postRequest } from "../../../core/network";
+import { getRequest, postRequest } from "../../../core/network";
 import { auth as authEnpoint } from "../../../constants/endPoints.json";
 import { notification } from "antd";
 
@@ -32,7 +32,7 @@ export const logout = () => async (dispatch, getState) => {
 
 export const login = (data) => (dispatch) => {
   dispatch({ type: LOGIN });
-  postRequest(data, undefined, undefined, authEnpoint.login)
+  getRequest(data, undefined, authEnpoint.login)
     .then((response) => {
       const { data } = response;
       return dispatch({

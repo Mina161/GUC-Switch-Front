@@ -1,19 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button, Form, Input } from "antd";
-import { login } from "../../app/store/actions/authActions";
-import { useHistory } from "react-router-dom";
+import { requestReset } from "../../app/store/actions/passwordActions";
 
-export const Login = ({ login, user }) => {
-  let history = useHistory();
-
-  React.useEffect(() => {
-    if (user) history.push("/");
-  }, [user]);
+export const ForgotPassword = ({ requestReset }) => {
 
   const [userData, setUserData] = React.useState({
     appNo: undefined,
-    password: undefined,
+    email: undefined,
   });
 
   const onChange = (e) => {
@@ -24,8 +18,8 @@ export const Login = ({ login, user }) => {
   const onFinish = () => {
     let user = new FormData();
     user.append("appNo", userData.appNo);
-    user.append("password", userData.password);
-    login(user);
+    user.append("email", userData.email);
+    requestReset(user);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -35,7 +29,7 @@ export const Login = ({ login, user }) => {
   return (
     <div className="position-relative main-page">
       <div className="col-md-6 position-absolute top-50 start-50 translate-middle">
-        <h1 className="text-center">GUCians Switching WebApp</h1>
+        <h1 className="text-center">Forgot you password?</h1>
         <div className="p-3 login-form">
           <Form
             name="basic"
@@ -58,19 +52,17 @@ export const Login = ({ login, user }) => {
             </Form.Item>
             <Form.Item
             label={<label className="login-label">Password</label>}
-              name="password"
+              name="email"
               rules={[
-                { required: true, message: "Please input your password" },
+                { required: true, message: "Please input your email" },
               ]}
             >
-              <Input.Password name="password" onChange={onChange} />
+              <Input name="email" onChange={onChange} />
             </Form.Item>
             <div className="d-flex justify-content-center">
               <Button className="main-button mx-3" type="primary" htmlType="submit">
-                Log in
+                Send Link
               </Button>
-              <a className="link" href="/signup">Register user</a>
-              <a className="link" href="/signup">Forgot Password?</a>
             </div>
           </Form>
         </div>
@@ -80,9 +72,9 @@ export const Login = ({ login, user }) => {
 };
 
 const mapStateToProps = (state) => ({
-  user: state?.auth?.user,
+
 });
 
-const mapDispatchToProps = { login };
+const mapDispatchToProps = { requestReset };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
