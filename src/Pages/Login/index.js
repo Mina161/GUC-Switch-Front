@@ -4,7 +4,7 @@ import { Button, Form, Input } from "antd";
 import { login } from "../../app/store/actions/authActions";
 import { useHistory } from "react-router-dom";
 
-export const Login = ({ login, user }) => {
+export const Login = ({ login, user, isLoading }) => {
   let history = useHistory();
 
   React.useEffect(() => {
@@ -66,7 +66,7 @@ export const Login = ({ login, user }) => {
               <Input.Password name="password" onChange={onChange} />
             </Form.Item>
             <div className="d-flex justify-content-center">
-                <Button className="main-button mx-3" type="primary" htmlType="submit">
+                <Button disabled={isLoading} className="main-button mx-3" type="primary" htmlType="submit">
                   Log in
                 </Button>
               <div>
@@ -86,6 +86,7 @@ export const Login = ({ login, user }) => {
 
 const mapStateToProps = (state) => ({
   user: state?.auth?.user,
+  isLoading: state?.auth?.isLoading,
 });
 
 const mapDispatchToProps = { login };
