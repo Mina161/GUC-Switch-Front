@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Button, Form, Input } from "antd";
 import { login } from "../../app/store/actions/authActions";
 import { useHistory } from "react-router-dom";
+import { Loading } from "../../app/components";
 
 export const Login = ({ login, user, isLoading }) => {
   let history = useHistory();
@@ -36,7 +37,8 @@ export const Login = ({ login, user, isLoading }) => {
     <div className="position-relative main-page">
       <div className="col-md-6 position-absolute top-50 start-50 translate-middle">
         <h1 className="text-center">GUCians Switching WebApp</h1>
-        <div className="p-3 login-form">
+        {isLoading && <div className="text-center"><Loading color="var(--primaryColor)"/></div>}
+        {!isLoading && <div className="p-3 login-form">
           <Form
             name="basic"
             labelCol={{ span: 8 }}
@@ -78,7 +80,7 @@ export const Login = ({ login, user, isLoading }) => {
               </div>
             </div>
           </Form>
-        </div>
+        </div>}
       </div>
     </div>
   );

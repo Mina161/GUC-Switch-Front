@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import { Button, Form, Input } from "antd";
 import { requestReset } from "../../app/store/actions/passwordActions";
 import { useHistory } from "react-router-dom";
+import { Loading } from "../../app/components";
+import { RiMailCheckFill } from "react-icons/ri";
 
-export const ForgotPassword = ({ requestReset }) => {
+export const ForgotPassword = ({ requestReset, isLoading, isDone }) => {
   let {history} = useHistory();
 
   const [userData, setUserData] = React.useState({
@@ -22,6 +24,7 @@ export const ForgotPassword = ({ requestReset }) => {
     user.append("appNo", userData.appNo);
     user.append("email", userData.email);
     requestReset(user);
+    userData.isLoading = false;
     history.push('/')
   };
 
@@ -32,8 +35,10 @@ export const ForgotPassword = ({ requestReset }) => {
   return (
     <div className="position-relative main-page">
       <div className="col-md-6 position-absolute top-50 start-50 translate-middle">
-        <h1 className="text-center">Forgot you password?</h1>
-        <div className="p-3 login-form">
+        <h1 className="text-center">Forgot your password?</h1>
+          {isLoading && <div className="text-center"><Loading color="var(--primaryColor)"/></div>}
+          {isDone && <div className="text-center"><RiMailCheckFill size={100} color="var(--primaryColor)"/></div>}
+          {!isDone && !isLoading && <div className="p-3 login-form">
           <Form
             name="basic"
             labelCol={{ span: 8 }}
@@ -63,19 +68,20 @@ export const ForgotPassword = ({ requestReset }) => {
               <Input name="email" onChange={onChange} />
             </Form.Item>
             <div className="d-flex justify-content-center">
-              <Button className="main-button mx-3" type="primary" htmlType="submit">
+              <Button disabled={isLoading} className="main-button mx-3" type="primary" htmlType="submit">
                 Send Link
               </Button>
             </div>
           </Form>
-        </div>
+        </div>}
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-
+  isLoading: state?.passReset?.isLoading,
+  isDone: state?.passReset?.isDone
 });
 
 const mapDispatchToProps = { requestReset };

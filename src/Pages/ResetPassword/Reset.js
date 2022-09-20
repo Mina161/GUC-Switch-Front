@@ -3,10 +3,13 @@ import { connect } from "react-redux";
 import { Button, Form, Input } from "antd";
 import { resetPass } from "../../app/store/actions/passwordActions";
 import { useParams, useHistory } from "react-router-dom";
+import { Loading } from "../../app/components";
+import { HiLockClosed } from "react-icons/hi";
 
-export const ResetPassword = ({ resetPass }) => {
+export const ResetPassword = ({ resetPass, isLoading, isDone }) => {
   let {token} = useParams();
   let history = useHistory();
+  
   console.log(token)
   const [userData, setUserData] = React.useState({
     appNo: undefined,
@@ -27,8 +30,7 @@ export const ResetPassword = ({ resetPass }) => {
     data.append("email", email);
     data.append("password", password);
     token && data.append("token", token);
-    resetPass(data);
-    history.push("/");
+    resetPass(data, history);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -39,7 +41,9 @@ export const ResetPassword = ({ resetPass }) => {
     <div className="position-relative main-page">
       <div className="col-md-6 position-absolute top-50 start-50 translate-middle">
         <h1 className="text-center">Reset Password</h1>
-        <div className="p-3 login-form">
+        {isLoading && <div className="text-center"><Loading color="var(--primaryColor)"/></div>}
+        {isDone && <div className="text-center"><HiLockClosed size={100} color="var(--primaryColor)"/></div>}
+        {!isLoading && !isDone && <div className="p-3 login-form">
           <Form
             name="basic"
             labelCol={{ span: 8 }}
@@ -115,7 +119,7 @@ export const ResetPassword = ({ resetPass }) => {
               </Button>
             </div>
           </Form>
-        </div>
+        </div>}
       </div>
     </div>
   );
@@ -123,6 +127,8 @@ export const ResetPassword = ({ resetPass }) => {
 
 const mapStateToProps = (state) => ({
   user: state?.auth?.user,
+  isLoading: state?.passReset?.isLoading,
+  isDone: state?.passReset?.isDone,
 });
 
 const mapDispatchToProps = { resetPass };
