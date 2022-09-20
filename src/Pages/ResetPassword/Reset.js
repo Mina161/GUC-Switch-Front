@@ -39,7 +39,7 @@ export const ResetPassword = ({ resetPass, isLoading, isDone }) => {
 
   return (
     <div className="position-relative main-page">
-      <div className="col-md-6 position-absolute top-50 start-50 translate-middle">
+      <div className="col-md-6 position-absolute top-50 start-50 translate-middle my-3 form-area">
         <h1 className="text-center">Reset Password</h1>
         {isLoading && <div className="text-center"><Loading color="var(--primaryColor)"/></div>}
         {isDone && <div className="text-center"><HiLockClosed size={100} color="var(--primaryColor)"/></div>}

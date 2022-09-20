@@ -35,7 +35,7 @@ export const Login = ({ login, user, isLoading }) => {
 
   return (
     <div className="position-relative main-page">
-      <div className="col-md-6 position-absolute top-50 start-50 translate-middle">
+      <div className="col-md-6 position-absolute top-50 start-50 translate-middle form-area">
         <h1 className="text-center">GUCians Switching WebApp</h1>
         {isLoading && <div className="text-center"><Loading color="var(--primaryColor)"/></div>}
         {!isLoading && <div className="p-3 login-form">
@@ -71,11 +71,10 @@ export const Login = ({ login, user, isLoading }) => {
                 <Button disabled={isLoading} className="main-button mx-3" type="primary" htmlType="submit">
                   Log in
                 </Button>
-              <div>
+              <div className="mx-3">
                 <a className="link" href="/signup">Register user</a>
               </div>
-              <br/>
-              <div>
+              <div className="mx-3">
                 <a className="link" href="/forgot-password">Forgot Password?</a>
               </div>
             </div>

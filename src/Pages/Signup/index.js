@@ -42,7 +42,7 @@ export const Signup = ({ signup, user }) => {
 
   return (
     <div className="position-relative main-page">
-      <div className="col-md-6 position-absolute top-50 start-50 translate-middle">
+      <div className="position-absolute top-50 start-50 translate-middle my-3 form-area">
         <h1 className="text-center">GUCians Switching WebApp</h1>
         <div className="p-3 login-form">
           <Form

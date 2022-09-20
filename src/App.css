@@ -57,6 +57,7 @@
 
 .main-button-cancel {
   background-color: red;
+  color: white;
   border-radius: 10px;
 }
 
@@ -68,5 +69,9 @@
 .main-button:hover {
   background-color: darkcyan;
   border-radius: 10px;
+}
+
+.form-area{
+  width: max-content;
 }
 
