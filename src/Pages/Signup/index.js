@@ -154,7 +154,7 @@ export const Signup = ({ signup, user, isLoading }) => {
 
 const mapStateToProps = (state) => ({
   user: state?.auth?.user,
-  isLoading: state?.autgh?.isLoading,
+  isLoading: state?.auth?.isLoading,
 });
 
 const mapDispatchToProps = { signup };
