@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { Button, Form, Input } from "antd";
 import { signup } from "../../app/store/actions/authActions";
 import { useHistory } from "react-router-dom";
+import { Loading } from "../../app/components";
 
-export const Signup = ({ signup, user }) => {
+export const Signup = ({ signup, user, isLoading }) => {
   let history = useHistory();
 
   React.useEffect(() => {
@@ -44,7 +45,8 @@ export const Signup = ({ signup, user }) => {
     <div className="position-relative main-page">
       <div className="position-absolute top-50 start-50 translate-middle my-3 form-area">
         <h1 className="text-center">GUCians Switching WebApp</h1>
-        <div className="p-3 login-form">
+        {isLoading && <div className="text-center"><Loading color="var(--primaryColor)"/></div>}
+        {!isLoading && <div className="p-3 login-form">
           <Form
             name="basic"
             labelCol={{ span: 8 }}
@@ -144,7 +146,7 @@ export const Signup = ({ signup, user }) => {
               </Button>
             </div>
           </Form>
-        </div>
+        </div>}
       </div>
     </div>
   );
@@ -152,6 +154,7 @@ export const Signup = ({ signup, user }) => {
 
 const mapStateToProps = (state) => ({
   user: state?.auth?.user,
+  isLoading: state?.autgh?.isLoading,
 });
 
 const mapDispatchToProps = { signup };
