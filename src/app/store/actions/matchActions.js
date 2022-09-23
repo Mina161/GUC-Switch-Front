@@ -30,32 +30,11 @@ export const getMatches = (data) => (dispatch) => {
     });
 };
 
-export const contactMatch = (data, updateRequest) => (dispatch, getState) => {
-  let request = getState().requests?.request;
-
-  const EditRequest = () => {
-    let requestData = new FormData();
-    requestData.append("appNo", request?.appNo);
-    requestData.append("major", request?.major);
-    requestData.append("semester", request?.semester);
-    requestData.append("tutNo", request?.tutNo);
-    request?.goTo.forEach((tut) => {
-      requestData.append("goTo", tut);
-    });
-    requestData.append("germanLevel", request?.germanLevel);
-    requestData.append("englishLevel", request?.englishLevel);
-    requestData.append("contacted", data.receiver);
-    request?.contacted &&
-      request?.contacted.forEach((appNo) => {
-        requestData.append("contacted", appNo);
-      });
-    updateRequest(requestData);
-  };
+export const contactMatch = (data) => (dispatch, getState) => {
 
   dispatch({ type: MATCH_LOADING });
   getRequest(data, undefined, matches.contactMatch)
-    .then((response) => {
-      EditRequest();
+    .then((response) => {     
       notification.success({ message: "Email Sent!" });
       return dispatch({
         type: CONTACT_SUCCESS,

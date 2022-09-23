@@ -2,7 +2,6 @@ import { Button, Card, Tooltip } from "antd";
 import React from "react";
 import { connect } from "react-redux";
 import { contactMatch } from "../../store/actions/matchActions";
-import { updateRequest } from "../../store/actions/requestActions";
 import { BiMailSend } from "react-icons/bi";
 
 export const SingleMatch = ({
@@ -10,7 +9,6 @@ export const SingleMatch = ({
   user,
   userRequest,
   contactMatch,
-  updateRequest,
 }) => {
   const contactedBefore =
     userRequest?.contacted && userRequest?.contacted?.includes(match.appNo);
@@ -30,8 +28,7 @@ export const SingleMatch = ({
                 }
                 onClick={() =>
                   contactMatch(
-                    { sender: user?.appNo, receiver: match.appNo },
-                    updateRequest
+                    { sender: user?.appNo, receiver: match.appNo }
                   )
                 }
               >
@@ -50,6 +47,6 @@ const mapStateToProps = (state) => ({
   userRequest: state?.requests?.request,
 });
 
-const mapDispatchToProps = { contactMatch, updateRequest };
+const mapDispatchToProps = { contactMatch };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMatch);
