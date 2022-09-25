@@ -36,8 +36,16 @@ export const contactMatch = (data) => (dispatch, getState) => {
   getRequest(data, undefined, matches.contactMatch)
     .then((response) => {     
       notification.success({ message: "Email Sent!" });
+      var state = getState().matches
+      console.log(state)
       return dispatch({
         type: CONTACT_SUCCESS,
+        payload: {
+          results: state?.matches,
+          thisPage: state?.thisPage,
+          limit: state?.limit,
+          count: state?.count,
+        },
       });
     })
     .catch((err) => {

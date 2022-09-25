@@ -18,18 +18,13 @@ export default function store(state = initialState, action) {
         isLoading: true,
       };
     case MATCH_SUCCESS:
+    case CONTACT_SUCCESS:
       return {
         ...state,
         matches: payload.results,
         thisPage: payload.thisPage,
         limit: payload.limit,
         count: payload.count,
-        isLoading: false,
-        isError: false,
-      };
-    case CONTACT_SUCCESS:
-      return {
-        ...state,
         isLoading: false,
         isError: false,
       };
