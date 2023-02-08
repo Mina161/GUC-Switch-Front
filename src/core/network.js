@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://guc-switch-back.herokuapp.com";
+const baseURL = process.env.BASE;
 // const baseURL = "localhost:8080";
 
 const postRequest = async (body, query, params, endPoint) => {
