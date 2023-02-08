@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const baseURL = process.env.API_BASE;
-// const baseURL = "localhost:8080";
 
 const postRequest = async (body, query, params, endPoint) => {
   return await axios.post(
