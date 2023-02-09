@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = process.env.API_BASE;
+const baseURL = "https://guc-switch-back.vercel.app";
 
 const postRequest = async (body, query, params, endPoint) => {
   return await axios.post(
